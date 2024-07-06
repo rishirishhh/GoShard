@@ -6,13 +6,13 @@ import (
 )
 
 type Decoder interface {
-	Decode(io.Reader, any) error
+	Decode(io.Reader, *Message) error
 }
 
 type GOBDecoder struct{}
 
-func (dec GOBDecoder) Decode(r io.Reader, v any) error {
-	return gob.NewDecoder(r).Decode(v)
+func (dec GOBDecoder) Decode(r io.Reader, msg *Message) error {
+	return gob.NewDecoder(r).Decode(msg)
 }
 
 type DefaultDecoder struct{}
